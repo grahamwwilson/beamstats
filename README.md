@@ -18,6 +18,6 @@ The information on (E, x, y, z, x', y') for each beam particle
 is read into an array and statistics on the mean and rms of each 
 quantity and correlations are computed.
 
-# Limitations
+## Limitations
 Currently the array size used is set 
 to a maximum of 1,000,000 particles per file
