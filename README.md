@@ -21,3 +21,7 @@ quantity and correlations are computed.
 ## Limitations
 Currently the array size used is set 
 to a maximum of 1,000,000 particles per file
+
+## Now also launchlumistats.sh 
+This does similar statistics for the Guinea-PIG lumi.ee.out files
+

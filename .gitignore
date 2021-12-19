@@ -3,3 +3,8 @@
 checkcorr
 BeamFile_LineCount.dat
 beamfile.ini
+lumifile.ini
+LumiFile_LineCount.dat
+checklumicorr
+*.out
+*.summary
