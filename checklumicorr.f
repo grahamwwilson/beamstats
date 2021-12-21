@@ -17,7 +17,11 @@
       double precision X(npar,N)
       double precision xm(npar),xr(npar)
       double precision xmean,xrms
+      
+      integer ntoread
       integer nevents
+      integer nread
+      integer iev
       
       double precision ebeam
       parameter (ebeam = 125.0d0)
@@ -29,12 +33,12 @@
       
 * Check how many particles are available to read
       open(unit=11,file='LumiFile_LineCount.dat',status='OLD')      
-      read(11,*)nevents
+      read(11,*)ntoread
       close(11)
       
-      print *,'Trying to read ',nevents,' events'
+      print *,'Trying to read ',ntoread,' events'
       
-      if(nevents.le.N)then
+      if(ntoread.le.N)then
          print *,'Array size is sufficient for requested particle count'
          print *,'This will WORK!'
       else
@@ -48,18 +52,31 @@
 
       open(unit=21,file='lumifile.ini',status='OLD')      
       
-      do i=1,nevents
+      nevents = 0
+      iev = 0
+      
+      do i=1,ntoread
          read(21,*)x1,x2,xpv,ypv,zpv,itime,x1p,y1p,x2p,y2p,
      +             sx1,sy1,sz1,sx2,sy2,sz2,iorder
-         call myfill(i,x,x1,x2,xpv,ypv,zpv,itime,x1p,y1p,x2p,y2p,
+* Various potential cuts - select one and only one condition
+* to store the event. FIXME - write this more elegantly.
+*         if(zpv.ge.0.0d0)then
+*         if(zpv.lt.0.0d0)then
+         if(abs(zpv).ge.0.0d0)then
+         iev = iev + 1
+         nevents = nevents + 1           
+         call myfill(iev,x,x1,x2,xpv,ypv,zpv,itime,x1p,y1p,x2p,y2p,
      +             sx1,sy1,sz1,sx2,sy2,sz2,iorder)
-* check a couple of lines to guard against potential file reading errors        
-         if(i.le.2.or.i.eq.nevents)then
-            print *,i,x(1,i),x(2,i),x(3,i),x(4,i),x(5,i),x(6,i)
          endif
+* check a couple of lines to guard against potential file reading errors        
+*         if(i.le.2.or.i.eq.nevents)then
+*            print *,i,x(1,i),x(2,i),x(3,i),x(4,i),x(5,i),x(6,i)
+*         endif
       enddo
       
       close(21)
+      
+      print *,'nevents analyzed ',nevents
       
 * Calculate statistics for the various "columns"      
       

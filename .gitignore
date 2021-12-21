@@ -6,5 +6,9 @@ beamfile.ini
 lumifile.ini
 LumiFile_LineCount.dat
 checklumicorr
+checkgencorr
+GenFile_LineCount.dat
+genfile.ini
 *.out
 *.summary
+*.txt
