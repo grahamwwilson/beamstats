@@ -58,6 +58,9 @@
       do i=1,ntoread
          read(21,*)x1,x2,xpv,ypv,zpv,itime,x1p,y1p,x2p,y2p,
      +             sx1,sy1,sz1,sx2,sy2,sz2,iorder
+* Rescale to Ebeam
+         x1 = x1/ebeam
+         x2 = x2/ebeam
 * Various potential cuts - select one and only one condition
 * to store the event. FIXME - write this more elegantly.
 *         if(zpv.ge.0.0d0)then
@@ -87,8 +90,10 @@
         xm(j) = xmean
         xr(j) = xrms
         if(j.le.2)then
+*           print *,'Mean energy loss relative to ',Ebeam,' of ',
+*     +              (Ebeam-xm(j))/Ebeam
            print *,'Mean energy loss relative to ',Ebeam,' of ',
-     +              (Ebeam-xm(j))/Ebeam
+     +              (1.0d0-xm(j))
         endif
       enddo
 
@@ -151,8 +156,8 @@
       double precision xmin,xmax
       double precision xmean,xrms
       character*9 cvalues(npar)
-      data cvalues/'E1  (GeV)',
-     +             'E2  (GeV)',
+      data cvalues/'E1/Eb    ',
+     +             'E2/Eb    ',
      +             'xpv  (nm)',
      +             'ypv  (nm)',
      +             'zpv  (um)',
@@ -218,8 +223,8 @@
       double precision xysum,covxy,rho
       
       character*9 cvalues(npar)
-      data cvalues/'E1  (GeV)',
-     +             'E2  (GeV)',
+      data cvalues/'E1/Eb    ',
+     +             'E2/Eb    ',
      +             'xpv  (nm)',
      +             'ypv  (nm)',
      +             'zpv  (um)',

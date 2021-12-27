@@ -25,3 +25,5 @@ to a maximum of 1,000,000 particles per file
 ## Now also launchlumistats.sh 
 This does similar statistics for the Guinea-PIG lumi.ee.out files
 
+## Now also launchgenstats.sh 
+This does similar statistics for generator info in the ILD files
