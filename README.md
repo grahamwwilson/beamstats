@@ -27,3 +27,6 @@ This does similar statistics for the Guinea-PIG lumi.ee.out files
 
 ## Now also launchgenstats.sh 
 This does similar statistics for generator info in the ILD files
+
+## Now also launchmcstats.sh 
+This does similar statistics for toy MC files according to parametrization

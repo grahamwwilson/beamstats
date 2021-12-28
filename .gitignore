@@ -7,8 +7,11 @@ lumifile.ini
 LumiFile_LineCount.dat
 checklumicorr
 checkgencorr
+checkmccorr
 GenFile_LineCount.dat
 genfile.ini
 *.out
 *.summary
 *.txt
+readheader.f
+mcfile.ini
