@@ -1,1 +1,1 @@
-      parameter (N=1000000)
+      parameter (N=8800000)

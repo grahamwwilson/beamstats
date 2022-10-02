@@ -34,6 +34,7 @@
 * Check how many particles are available to read
       open(unit=11,file='LumiFile_LineCount.dat',status='OLD')      
       read(11,*)ntoread
+*      ntoread = ntoread-1
       close(11)
       
       print *,'Trying to read ',ntoread,' events'

@@ -13,5 +13,6 @@ genfile.ini
 *.out
 *.summary
 *.txt
+*.log
 readheader.f
 mcfile.ini
